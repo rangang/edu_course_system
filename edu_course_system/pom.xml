@@ -8,14 +8,6 @@
     <artifactId>edu_course_system</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
-
-    <!--  设置打包为war包  -->
-    <packaging>war</packaging>
-
     <dependencies>
         <!-- Servlet -->
         <dependency>
@@ -24,6 +16,7 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>

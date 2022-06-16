@@ -9,5 +9,8 @@
         <module name="edu_course_system" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="servlet_demo" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

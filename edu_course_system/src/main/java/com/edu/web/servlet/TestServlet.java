@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * @CreateTime: 2022/6/15 5:52 下午
  * @Description:
  */
-@WebServlet("/test")
+@WebServlet("/demo002")
 public class TestServlet extends BaseServlet {
 
     public void add(HttpServletRequest req, HttpServletResponse resp) {
