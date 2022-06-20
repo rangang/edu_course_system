@@ -26,4 +26,11 @@ public interface CourseDao {
      */
     public List<Course> findByCourseNameAndStatus(String courseName, String status);
 
+    /**
+     * 保存课程营销信息
+     * @param course
+     * @return
+     */
+    public int saveCourseSalesInfo(Course course);
+
 }

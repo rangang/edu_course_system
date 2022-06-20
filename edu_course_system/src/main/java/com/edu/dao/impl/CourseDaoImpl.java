@@ -82,4 +82,35 @@ public class CourseDaoImpl implements CourseDao {
 
     }
 
+    @Override
+    public int saveCourseSalesInfo(Course course) {
+
+        try {
+            // 创建QueryRunner
+            QueryRunner queryRunner = new QueryRunner(DruidUtils.getDataSource());
+
+            // 编写SQL
+            String sql = "INSERT INTO course(course_name,brief,teacher_name,teacher_info,preview_first_field,preview_second_field,discounts,price,price_tag,share_image_title,share_title,share_description,course_description,course_img_url,STATUS,create_time,update_time)\n" +
+                    "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+
+            // 准备参数
+            Object[] param = {
+                course.getCourse_name(),course.getBrief(),course.getTeacher_name(),course.getTeacher_info(),
+                course.getPreview_first_field(),course.getPreview_second_field(),course.getDiscounts(),
+                course.getPrice(),course.getPrice_tag(),course.getShare_image_title(),course.getShare_title(),
+                course.getShare_description(),course.getCourse_description(),course.getCourse_img_url(),course.getStatus(),
+                course.getCreate_time(),course.getUpdate_time()
+            };
+
+            // 执行插入操作
+            int row = queryRunner.update(sql, param);
+            return row;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+
+
+    }
+
 }
