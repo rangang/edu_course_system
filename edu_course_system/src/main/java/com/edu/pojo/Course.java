@@ -7,7 +7,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 课程类
+ * 课程实体类
  * */
 @Data
 public class Course implements Serializable {
