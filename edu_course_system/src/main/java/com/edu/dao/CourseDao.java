@@ -33,4 +33,25 @@ public interface CourseDao {
      */
     public int saveCourseSalesInfo(Course course);
 
+    /**
+     * 根据课程ID查询课程信息
+     * @param id
+     * @return
+     */
+    public Course findCourseById(int id);
+
+    /**
+     * 修改课程营销信息
+     * @param course
+     * @return
+     */
+    public int updateCourseSalesInfo(Course course);
+
+    /**
+     * 修改课程状态
+     * @param course
+     * @return
+     */
+    public int updateCourseStatus(Course course);
+
 }

@@ -4,6 +4,7 @@ import com.edu.dao.CourseDao;
 import com.edu.pojo.Course;
 import com.edu.utils.DruidUtils;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.SQLException;
@@ -110,6 +111,70 @@ public class CourseDaoImpl implements CourseDao {
             return 0;
         }
 
+
+    }
+
+    @Override
+    public Course findCourseById(int id) {
+
+        try {
+            QueryRunner queryRunner = new QueryRunner(DruidUtils.getDataSource());
+            String sql = "SELECT id,course_name,brief,teacher_name,teacher_info,preview_first_field,preview_second_field,discounts,price,price_tag,course_img_url,share_image_title,share_title,share_description,course_description,STATUS FROM course WHERE id = ?;";
+
+            Course course = queryRunner.query(sql, new BeanHandler<Course>(Course.class), id);
+
+            return course;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+
+    }
+
+    @Override
+    public int updateCourseSalesInfo(Course course) {
+
+        try {
+            QueryRunner queryRunner = new QueryRunner(DruidUtils.getDataSource());
+
+            String sql = "UPDATE course SET course_name = ?,brief = ?,teacher_name = ?,teacher_info = ?,preview_first_field = ?,preview_second_field = ?,discounts = ?,price = ?,price_tag = ?,share_image_title = ?,share_title = ?,share_description = ?,course_description = ?,course_img_url = ?,update_time = ? WHERE id = ?";
+
+            Object[] param = {
+                    course.getCourse_name(),course.getBrief(),course.getTeacher_name(),course.getTeacher_info(),course.getPreview_first_field(),
+                    course.getPreview_second_field(),course.getDiscounts(),course.getPrice(),course.getPrice_tag(),course.getShare_image_title(),
+                    course.getShare_title(),course.getShare_description(),course.getCourse_description(),course.getCourse_img_url(),course.getUpdate_time(),course.getId()
+            };
+
+            int row = queryRunner.update(sql, param);
+            return row;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+
+    }
+
+    @Override
+    public int updateCourseStatus(Course course) {
+
+        try {
+            QueryRunner queryRunner = new QueryRunner(DruidUtils.getDataSource());
+
+            String sql = "UPDATE course SET `status` = ?, update_time = ? WHERE id = ?;";
+            Object[] param = {
+                course.getStatus(),course.getUpdate_time(),course.getId()
+            };
+
+            int row = queryRunner.update(sql, param);
+            return row;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
 
     }
 
