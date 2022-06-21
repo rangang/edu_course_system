@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *  课程章节
@@ -48,6 +50,12 @@ public class Course_Section  implements Serializable {
   //是否删除 0-未删除，1-已删除
   @JSONField(ordinal = 9)
   private int isDel;
+
+  // 添加一个Course类型的属性
+  private Course course;
+
+  // 添加一个list集合 泛型是Course_Lesson
+  List<Course_Lesson> lessonList = new ArrayList<>();
 
   @Override
   public String toString() {

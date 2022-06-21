@@ -5,6 +5,8 @@ import lombok.Data;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 课程实体类
@@ -92,6 +94,8 @@ public class Course implements Serializable {
   @JSONField(ordinal = 20)
   private String share_image_title; //分享图title
 
+  // 添加list集合 泛型是 Course_Section
+  List<Course_Section> sectionList = new ArrayList<>();
 
   //使用JSONField(serialize = false)排除不需要转换的字段
 
