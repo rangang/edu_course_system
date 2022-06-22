@@ -4,6 +4,7 @@ import com.edu.base.StatusCode;
 import com.edu.dao.CourseContentDao;
 import com.edu.dao.impl.CourseContentDaoImpl;
 import com.edu.pojo.Course;
+import com.edu.pojo.Course_Lesson;
 import com.edu.pojo.Course_Section;
 import com.edu.service.CourseContentService;
 import com.edu.utils.DateUtils;
@@ -87,6 +88,50 @@ public class CourseContentServiceImpl implements CourseContentService {
         int i = contentDao.updateSectionStatus(id, status);
 
         // 根据修改是否成功，封装对应信息
+        if (i > 0) {
+            String result = StatusCode.SUCCESS.toString();
+            return result;
+        } else {
+            String result = StatusCode.FAIL.toString();
+            return result;
+        }
+
+    }
+
+    @Override
+    public String saveLesson(Course_Lesson course_lesson) {
+
+        // 补全参数
+        course_lesson.setIsDel(0);
+        course_lesson.setStatus(2); // 状态 0：隐藏 2：待更新 3：已发布
+        String date = DateUtils.getDateFormart();
+        course_lesson.setCreate_time(date);
+        course_lesson.setUpdate_time(date);
+
+        // 调用Dao进行插入
+        int i = contentDao.saveLesson(course_lesson);
+
+        // 判断插入是否成功，封装对应信息
+        if (i > 0) {
+            String result = StatusCode.SUCCESS.toString();
+            return result;
+        } else {
+            String result = StatusCode.FAIL.toString();
+            return result;
+        }
+
+    }
+
+    @Override
+    public String updateLesson(Course_Lesson course_lesson) {
+
+        // 补全信息
+        course_lesson.setUpdate_time(DateUtils.getDateFormart());
+
+        // 调用Dao进行修改
+        int i = contentDao.updateLesson(course_lesson);
+
+        // 判断修改是否成功，封装对应信息
         if (i > 0) {
             String result = StatusCode.SUCCESS.toString();
             return result;

@@ -1,6 +1,7 @@
 package com.edu.service;
 
 import com.edu.pojo.Course;
+import com.edu.pojo.Course_Lesson;
 import com.edu.pojo.Course_Section;
 
 import java.util.List;
@@ -22,5 +23,9 @@ public interface CourseContentService {
     public String updateSection(Course_Section section);
 
     public String updateSectionStatus(int id, int status);
+
+    public String saveLesson(Course_Lesson course_lesson);
+
+    public String updateLesson(Course_Lesson course_lesson);
 
 }

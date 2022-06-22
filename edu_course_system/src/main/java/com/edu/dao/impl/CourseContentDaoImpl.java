@@ -196,4 +196,59 @@ public class CourseContentDaoImpl implements CourseContentDao {
         }
 
     }
+
+    @Override
+    public int saveLesson(Course_Lesson course_lesson) {
+
+        try {
+            // 创建QueryRunner
+            QueryRunner queryRunner = new QueryRunner(DruidUtils.getDataSource());
+
+            // 编写SQL
+            String sql = "INSERT INTO course_lesson(course_id,section_id,theme,duration,is_free,order_num,is_del,`status`,create_time,update_time) VALUES(?,?,?,?,?,?,?,?,?,?);";
+
+            // 准备参数
+            Object[] param = {
+                course_lesson.getCourse_id(),course_lesson.getSection_id(),course_lesson.getTheme(),
+                course_lesson.getDuration(),course_lesson.getIs_free(),course_lesson.getOrderNum(),
+                course_lesson.getIsDel(),course_lesson.getStatus(),course_lesson.getCreate_time(),course_lesson.getUpdate_time()
+            };
+
+            // 执行插入操作
+            int row = queryRunner.update(sql, param);
+            return row;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+
+    }
+
+    @Override
+    public int updateLesson(Course_Lesson course_lesson) {
+
+        try {
+            // 创建QueryRunner
+            QueryRunner queryRunner = new QueryRunner(DruidUtils.getDataSource());
+
+            // 编写SQL
+            String sql = "UPDATE course_lesson SET section_id = ?, theme = ?, duration = ?, is_free = ?, order_num = ?, update_time = ? WHERE id = ?";
+
+            // 准备参数
+            Object[] param = {
+                course_lesson.getSection_id(),course_lesson.getTheme(),course_lesson.getDuration(),
+                course_lesson.getIs_free(),course_lesson.getOrderNum(),course_lesson.getUpdate_time(),
+                course_lesson.getId()
+            };
+
+            // 执行修改操作
+            int row = queryRunner.update(sql, param);
+            return row;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+
+    }
 }

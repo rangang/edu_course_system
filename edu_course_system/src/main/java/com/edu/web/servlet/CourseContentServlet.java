@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import com.edu.base.BaseServlet;
 import com.edu.pojo.Course;
+import com.edu.pojo.Course_Lesson;
 import com.edu.pojo.Course_Section;
 import com.edu.service.CourseContentService;
 import com.edu.service.impl.CourseContentServiceImpl;
@@ -135,6 +136,44 @@ public class CourseContentServlet extends BaseServlet {
             // 返回结果数据
             response.getWriter().print(result);
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 保存&修改课时信息
+     * @param request
+     * @param response
+     */
+    public void saveOrUpdateLesson(HttpServletRequest request, HttpServletResponse response) {
+
+        try {
+            // 获取参数，从域对象中获取
+            Map<String, Object> map = (Map)request.getAttribute("map");
+
+            // 创建Course_Lesson
+            Course_Lesson lesson = new Course_Lesson();
+
+            // 使用BeanUtils工具类，将map中的数据封装到lesson
+            BeanUtils.populate(lesson,map);
+
+            // 业务处理
+            CourseContentService contentService = new CourseContentServiceImpl();
+
+            if (lesson.getId() != 0) {
+                // 修改操作
+                String result = contentService.updateLesson(lesson);
+                // 响应结果
+                response.getWriter().print(result);
+            } else {
+                // 保存操作
+                String result = contentService.saveLesson(lesson);
+                // 响应结果
+                response.getWriter().print(result);
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

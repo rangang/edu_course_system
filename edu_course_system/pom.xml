@@ -8,6 +8,8 @@
     <artifactId>edu_course_system</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <packaging>war</packaging>
+
     <dependencies>
         <!-- Servlet -->
         <dependency>
