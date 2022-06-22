@@ -40,6 +40,8 @@
 
 ![image](https://user-images.githubusercontent.com/16054555/174953444-2c2a1e92-0127-4f72-a9a5-24a546c3f243.png)
 
+![image](https://user-images.githubusercontent.com/16054555/174965010-73112ef5-7cc1-4451-a97c-fac58b4c6195.png)
+
 
 8.[接口文档](/doc/接口文档.md)
 
